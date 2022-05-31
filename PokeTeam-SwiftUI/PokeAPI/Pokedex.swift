@@ -67,6 +67,10 @@ class Pokedex: ObservableObject {
         guard canLoadMorePokemon, !isLoading else { return }
         guard let url = buildURL() else { return }
 
+        defer {
+            isLoading = false
+        }
+
         isLoading = true
         let (newPokemon, nextPage) = try await api.getPokemon(with: url)
         allPokemon.append(contentsOf: newPokemon)
@@ -74,7 +78,6 @@ class Pokedex: ObservableObject {
         if nextPage == nil {
             canLoadMorePokemon = false
         }
-        isLoading = false
     }
 
     private func buildURL() -> URL? {
