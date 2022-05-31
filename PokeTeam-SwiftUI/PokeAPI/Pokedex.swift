@@ -30,15 +30,28 @@ class Pokedex: ObservableObject {
         self.canLoadMorePokemon = false
     }
 
-    func getPokemonIfNeeded(currentPokemon pokemon: Pokemon?) async throws {
+    func getPokemonIfNeeded(currentPokemon pokemon: Pokemon?) {
         guard let pokemon = pokemon else {
-            try await getPokemon()
+            Task {
+                do {
+                    try await getPokemon()
+                } catch {
+                    print(error)
+                }
+            }
+
             return
         }
 
         let thresholdIndex = allPokemon.index(allPokemon.endIndex, offsetBy: -5)
         if allPokemon.firstIndex(where: { $0.id == pokemon.id }) == thresholdIndex {
-            try await getPokemon()
+            Task {
+                do {
+                    try await getPokemon()
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 

@@ -23,12 +23,8 @@ struct ContentView: View {
                     ForEach(pokedex.allPokemon, id: \.id) { pokemon in
                         NavigationLink(destination: Text(pokemon.name)) {
                             PokemonRow(pokemon: pokemon)
-                                .task {
-                                    do {
-                                        try await pokedex.getPokemonIfNeeded(currentPokemon: pokemon)
-                                    } catch {
-                                        print(error)
-                                    }
+                                .onAppear {
+                                    pokedex.getPokemonIfNeeded(currentPokemon: pokemon)
                                 }
                         }
                     }
