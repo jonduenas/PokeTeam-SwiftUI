@@ -21,7 +21,7 @@ struct ContentView: View {
             } else {
                 List {
                     ForEach(pokedex.allPokemon, id: \.id) { pokemon in
-                        NavigationLink(destination: Text(pokemon.name)) {
+                        NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
                             PokemonRow(pokemon: pokemon)
                                 .onAppear {
                                     pokedex.getPokemonIfNeeded(currentPokemon: pokemon)
@@ -40,6 +40,11 @@ struct ContentView: View {
             }
         }
         .navigationTitle("Pokédex")
+        .configureNavigationBar {
+            $0.navigationBar.topItem?.backButtonDisplayMode = .minimal
+            $0.navigationBar.tintColor = .white
+        }
+        .statusBarStyle(.darkContent)
     }
 }
 
