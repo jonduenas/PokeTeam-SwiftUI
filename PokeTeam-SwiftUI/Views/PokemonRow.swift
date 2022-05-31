@@ -16,20 +16,7 @@ struct PokemonRow: View {
 
     var body: some View {
         HStack(spacing: 20) {
-            AsyncImage(
-                url: URL(string: "https://github.com/fanzeyi/pokemon.json/blob/master/thumbnails/\(idString).png?raw=true")) { phase in
-                    if let image = phase.image {
-                        image.resizable()
-                            .scaledToFit()
-                    } else if phase.error != nil {
-                        Image("025")
-                            .renderingMode(.template)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else {
-                        ProgressView()
-                    }
-                }
+            RemoteImage(source: pokemon.spriteURL)
                 .padding(8.0)
                 .frame(width: 60.0, height: 60.0)
 
@@ -38,7 +25,7 @@ struct PokemonRow: View {
                     .font(.headline)
 
 
-            Text(pokemon.name.english)
+            Text(pokemon.name)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.leading)
@@ -46,7 +33,7 @@ struct PokemonRow: View {
 
             Spacer()
 
-            PokemonTypeView(types: pokemon.type, compactSize: true)
+            PokemonTypeView(types: pokemon.types, compactSize: true)
         }
             
     }

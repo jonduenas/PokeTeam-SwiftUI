@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct PokeTeam_SwiftUIApp: App {
+    @StateObject private var pokedex = Pokedex()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+                    .environmentObject(pokedex)
+            }
         }
     }
 }

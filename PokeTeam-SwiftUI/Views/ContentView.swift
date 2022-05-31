@@ -8,28 +8,49 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var pokemon = [Pokemon]()
+    @EnvironmentObject var pokedex: Pokedex
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(pokemon, id: \.id) { pokemon in
-                    NavigationLink(destination: Text(pokemon.name.english)) {
-                        PokemonRow(pokemon: pokemon)
+        Group {
+            if pokedex.isLoadingFirstPage {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            } else {
+                List {
+                    ForEach(pokedex.allPokemon, id: \.id) { pokemon in
+                        NavigationLink(destination: Text(pokemon.name)) {
+                            PokemonRow(pokemon: pokemon)
+                                .task {
+                                    do {
+                                        try await pokedex.getPokemonIfNeeded(currentPokemon: pokemon)
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                        }
+                    }
+                    if pokedex.isLoading {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
                     }
                 }
+                .listStyle(.inset)
             }
-            .onAppear {
-                pokemon = PokeAPI().getPokemon()
-            }
-            .listStyle(.inset)
-            .navigationTitle("Pokédex")
         }
+        .navigationTitle("Pokédex")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NavigationView {
+            ContentView().environmentObject(Pokedex(allPokemon: [Pokemon.example]))
+        }
     }
 }

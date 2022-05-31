@@ -7,73 +7,62 @@
 
 import Foundation
 
-struct Pokemon: Decodable {
-    let id: Int
-    let name: Name
-    let type: [PokemonType]
-    let base: BaseStats
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case type
-        case base
-    }
-
-    struct Name: Decodable {
-        let english: String
-        let japanese: String
-        let chinese: String
-        let french: String
-    }
-
-    struct BaseStats: Decodable {
-        let hp: Int
-        let attack: Int
-        let defense: Int
-        let spAttack: Int
-        let spDefense: Int
-        let speed: Int
-
-        enum CodingKeys: String, CodingKey {
-            case hp = "HP"
-            case attack = "Attack"
-            case defense = "Defense"
-            case spAttack = "Sp. Attack"
-            case spDefense = "Sp. Defense"
-            case speed = "Speed"
-        }
-    }
+struct Pokemon: Identifiable {
+    var id: Int { return pokedexID }
+    let pokedexID: Int
+    let name: String
+    let height: Double
+    let weight: Double
+    let color: String
+    let shape: String
+    let flavorText: String
+    let genus: String
+    let habitat: String
+    let spriteURL: URL
+    let stats: [String: Int]
+    let types: [PokemonType]
 }
 
 extension Pokemon {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(Name.self, forKey: .name)
-        base = try container.decode(BaseStats.self, forKey: .base)
-        let typeStrings = try container.decode([String].self, forKey: .type)
-        type = typeStrings.compactMap { PokemonType(name: $0) }
+    init?(speciesData: PokemonSpeciesData, varietyData: PokemonVarietyData) {
+        guard let nationalDexID = speciesData.nationalDexNumber else {
+            return nil
+        }
+        pokedexID = nationalDexID
+        name = speciesData.names.first(where: { $0.language.name == "en" })?.name ?? speciesData.name
+        height = Double(varietyData.height) / 10
+        weight = Double(varietyData.weight) / 10
+        color = speciesData.color?.name ?? ""
+        shape = speciesData.shape?.name ?? ""
+        flavorText = speciesData.englishFlavorText ?? ""
+        genus = speciesData.englishGenus ?? ""
+        habitat = speciesData.habitat?.name ?? ""
+        spriteURL = URL(string: varietyData.sprites.officialArtwork)!
+        stats = varietyData.statsDictionary
+        types = varietyData.types.compactMap { $0.pokemonType }
     }
 }
 
 extension Pokemon {
     static let example = Pokemon(
-        id: 25,
-        name: Name(
-            english: "Pikachu",
-            japanese: "ピカチュウ",
-            chinese: "皮卡丘",
-            french: "Pikachu"
-        ),
-        type: [.electric, .electric],
-        base: BaseStats(
-            hp: 35,
-            attack: 55,
-            defense: 40,
-            spAttack: 50,
-            spDefense: 50,
-            speed: 90
-        )
+        pokedexID: 25,
+        name: "Pikachu",
+        height: 0.4,
+        weight: 6.0,
+        color: "yellow",
+        shape: "quadruped",
+        flavorText: "When several of these POKéMON gather, their electricity could build and cause lightning storms.",
+        genus: "Mouse Pokémon",
+        habitat: "forest",
+        spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png")!,
+        stats: [
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        ],
+        types: [.electric]
     )
 }
