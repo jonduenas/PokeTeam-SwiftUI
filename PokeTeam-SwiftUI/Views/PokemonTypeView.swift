@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct PokemonTypeView: View {
+    enum Style {
+        case regular
+        case compact
+    }
+
     let types: [PokemonType]
-    let compactSize: Bool
+    var style: Style = .regular
 
     var body: some View {
         HStack {
@@ -19,7 +24,7 @@ struct PokemonTypeView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 20.0, height: 20.0)
-                    if !compactSize {
+                    if case .regular = style {
                         Text(type.name)
                             .font(.footnote)
                             .fontWeight(.bold)
@@ -28,9 +33,10 @@ struct PokemonTypeView: View {
                             .lineLimit(1)
                     }
                 }
-                .padding(8.0)
+                .padding(.vertical, 8.0)
+                .padding(.horizontal, style == .regular ? 16.0 : 8.0)
                 .background(type.color)
-                .cornerRadius(compactSize ? .infinity : /*@START_MENU_TOKEN@*/5.0/*@END_MENU_TOKEN@*/)
+                .cornerRadius(.infinity)
             }
         }
     }
@@ -38,6 +44,12 @@ struct PokemonTypeView: View {
 
 struct TypeView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonTypeView(types: [.electric, .flying], compactSize: true)
+        PokemonTypeView(types: [.electric, .flying])
+            .previewLayout(.sizeThatFits)
+            .padding()
+
+        PokemonTypeView(types: [.electric, .flying], style: .compact)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

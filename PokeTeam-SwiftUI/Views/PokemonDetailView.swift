@@ -21,7 +21,7 @@ struct PokemonDetailView: View {
                     .fontWeight(.bold)
                     .padding(.top)
 
-                PokemonTypeView(types: pokemon.types, compactSize: false)
+                PokemonTypeView(types: pokemon.types)
 
                 Text("No. " + String(withInt: pokemon.pokedexID, leadingZeros: 3) + " - \(pokemon.genus)")
                     .font(.subheadline)

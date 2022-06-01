@@ -33,7 +33,7 @@ struct PokemonRow: View {
 
             Spacer()
 
-            PokemonTypeView(types: pokemon.types, compactSize: true)
+            PokemonTypeView(types: pokemon.types, style: .compact)
         }
             
     }
