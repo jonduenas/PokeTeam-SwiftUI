@@ -19,7 +19,7 @@ struct Pokemon: Identifiable {
     let genus: String
     let habitat: String
     let spriteURL: URL
-    let stats: [String: Int]
+    let stats: [Stat: Int]
     let types: [PokemonType]
 }
 
@@ -56,13 +56,39 @@ extension Pokemon {
         habitat: "forest",
         spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png")!,
         stats: [
-            "hp": 35,
-            "attack": 55,
-            "defense": 40,
-            "special-attack": 50,
-            "special-defense": 50,
-            "speed": 90
+            .hp: 35,
+            .attack: 55,
+            .defense: 40,
+            .specialAttack: 50,
+            .specialDefense: 50,
+            .speed: 90
         ],
         types: [.electric]
     )
+}
+
+enum Stat: String, CaseIterable {
+    case hp
+    case attack
+    case defense
+    case specialAttack = "special-attack"
+    case specialDefense = "special-defense"
+    case speed
+
+    var shortName: String {
+        switch self {
+        case .hp:
+            return "HP"
+        case .attack:
+            return "ATK"
+        case .defense:
+            return "DEF"
+        case .specialAttack:
+            return "SPA"
+        case .specialDefense:
+            return "SPD"
+        case .speed:
+            return "SPE"
+        }
+    }
 }

@@ -36,7 +36,12 @@ struct PokemonDetailView: View {
 
                 Text("Stats")
                     .font(.headline)
+                    .padding(.bottom)
+
+                StatsView(stats: pokemon.stats, progressColor: pokemon.types[0].color)
+                    .padding(/*@START_MENU_TOKEN@*/.horizontal, 32.0/*@END_MENU_TOKEN@*/)
             }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             .navigationTitle("No. " + String(withInt: pokemon.pokedexID, leadingZeros: 3))
             .navigationBarTitleDisplayMode(.inline)
         }

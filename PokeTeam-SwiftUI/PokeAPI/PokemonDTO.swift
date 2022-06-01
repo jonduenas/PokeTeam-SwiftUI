@@ -85,12 +85,14 @@ struct PokemonVarietyData: Decodable {
     let height: Int
     let weight: Int
     let sprites: PokemonSprites
-    let stats: [Stat]
+    let stats: [StatEntry]
     let types: [PokemonTypeEntry]
 
-    var statsDictionary: [String: Int] {
-        return stats.reduce(into: [String: Int]()) {
-            $0[$1.statName] = $1.baseStat
+    var statsDictionary: [Stat: Int] {
+        return stats.reduce(into: [Stat: Int]()) {
+            if let stat = Stat(rawValue: $1.statName) {
+                $0[stat] = $1.baseStat
+            }
         }
     }
 }
@@ -119,7 +121,7 @@ struct OfficialArtwork: Codable {
     let frontDefault: String
 }
 
-struct Stat: Decodable {
+struct StatEntry: Decodable {
     let baseStat: Int
     let statName: String
 
