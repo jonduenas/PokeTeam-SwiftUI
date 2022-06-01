@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var pokedex: Pokedex
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         Group {
@@ -42,9 +43,7 @@ struct ContentView: View {
         .navigationTitle("Pokédex")
         .configureNavigationBar {
             $0.navigationBar.topItem?.backButtonDisplayMode = .minimal
-            $0.navigationBar.tintColor = .white
         }
-        .statusBarStyle(.darkContent)
     }
 }
 

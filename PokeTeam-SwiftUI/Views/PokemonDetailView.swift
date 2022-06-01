@@ -11,62 +11,35 @@ struct PokemonDetailView: View {
     let pokemon: Pokemon
 
     var body: some View {
-        VStack {
-            HeaderImageView(pokemon: pokemon)
-                .frame(maxWidth: .infinity, maxHeight: 250)
+        ScrollView {
+            VStack(spacing: 8.0) {
+                HeaderImageView(pokemon: pokemon)
+                    .padding(.horizontal, 50.0)
+                    .frame(height: 300.0)
 
-            VStack(spacing: 12.0) {
+                Spacer()
+
                 Text(pokemon.name)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .padding(.top)
 
                 PokemonTypeView(types: pokemon.types)
 
-                Text("No. " + String(withInt: pokemon.pokedexID, leadingZeros: 3) + " - \(pokemon.genus)")
-                    .font(.subheadline)
+                Divider()
+                    .padding(/*@START_MENU_TOKEN@*/.all, 24.0/*@END_MENU_TOKEN@*/)
 
-                HStack(spacing: 12) {
-                    Spacer()
-
-                    Image(systemName: "ruler.fill")
-                        .resizable(resizingMode: .stretch)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30.0, height: 30.0)
-
-                    Text(String(pokemon.height) + " m")
-                        .font(.headline)
-
-                    Spacer()
-
-                    Image(systemName: "scalemass.fill")
-                        .resizable(resizingMode: .stretch)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30.0, height: 30.0)
-
-                    Text(String(pokemon.height) + " kg")
-                        .font(.headline)
-
-                    Spacer()
-                }
+                PokemonDescriptionView(pokemon: pokemon)
+                    .padding(.horizontal, 32.0)
 
                 Divider()
-                    .padding(.all)
+                    .padding(24.0)
 
-                Text(pokemon.flavorText)
-                    .font(.body)
-                    .padding(.horizontal)
-
-                Divider()
-                    .padding(.all)
-
-                Spacer()
+                Text("Stats")
+                    .font(.headline)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
+            .navigationTitle("No. " + String(withInt: pokemon.pokedexID, leadingZeros: 3))
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .statusBarStyle(.lightContent)
     }
 }
 
@@ -75,5 +48,11 @@ struct PokemonDetailView_Previews: PreviewProvider {
         NavigationView {
             PokemonDetailView(pokemon: Pokemon.example)
         }
+        .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+
+        NavigationView {
+            PokemonDetailView(pokemon: Pokemon.example)
+        }
+        .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
     }
 }

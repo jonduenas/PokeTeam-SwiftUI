@@ -37,7 +37,7 @@ enum PokemonType: String {
     }
 
     var secondaryGradientColor: Color {
-        return color.adjust(saturation: -0.1, brightness: 0.1)
+        return color.adjust(saturation: -0.2, brightness: 0.2)
     }
 
     var image: Image {
