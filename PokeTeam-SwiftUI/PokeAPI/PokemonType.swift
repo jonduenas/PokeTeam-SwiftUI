@@ -36,11 +36,41 @@ enum PokemonType: String {
         return Color(self.rawValue)
     }
 
+    var secondaryGradientColor: Color {
+        return color.adjust(saturation: -0.1, brightness: 0.1)
+    }
+
     var image: Image {
         return Image(self.rawValue)
     }
 
     init?(name: String) {
         self.init(rawValue: name.lowercased())
+    }
+}
+
+extension Color {
+    func adjust(hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, opacity: CGFloat = 1) -> Color {
+        let color = UIColor(self)
+        var currentHue: CGFloat = 0
+        var currentSaturation: CGFloat = 0
+        var currentBrightness: CGFloat = 0
+        var currentOpacity: CGFloat = 0
+
+        if color.getHue(
+            &currentHue,
+            saturation: &currentSaturation,
+            brightness: &currentBrightness,
+            alpha: &currentOpacity
+        ) {
+            return Color(
+                hue: currentHue + hue,
+                saturation: currentSaturation + saturation,
+                brightness: currentBrightness + brightness,
+                opacity: currentOpacity + opacity
+            )
+        }
+
+        return self
     }
 }

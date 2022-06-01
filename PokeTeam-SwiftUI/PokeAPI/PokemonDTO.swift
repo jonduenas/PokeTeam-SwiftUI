@@ -45,7 +45,7 @@ struct PokemonSpeciesData: Decodable {
     }
 
     var englishFlavorText: String? {
-        return flavorTextEntries.first(where: { $0.language.name == "en" })?.flavorText.trimmingCharacters(in: .newlines)
+        return flavorTextEntries.last(where: { $0.language.name == "en" })?.flavorText.trimmingCharacters(in: .newlines).replacingOccurrences(of: "\n", with: " ")
     }
 
     var englishGenus: String? {

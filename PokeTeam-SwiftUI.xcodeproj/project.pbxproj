@@ -25,6 +25,7 @@
 		65D2DD52283D4B7000832318 /* String+LeadingZeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2DD51283D4B7000832318 /* String+LeadingZeroes.swift */; };
 		65D2DD54283D68AD00832318 /* PokemonTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2DD53283D68AD00832318 /* PokemonTypeView.swift */; };
 		65D2DD56283D698100832318 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2DD55283D698100832318 /* PokemonType.swift */; };
+		65D2F4982847AB73003B915E /* HeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2F4972847AB73003B915E /* HeaderImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		65D2DD51283D4B7000832318 /* String+LeadingZeroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LeadingZeroes.swift"; sourceTree = "<group>"; };
 		65D2DD53283D68AD00832318 /* PokemonTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeView.swift; sourceTree = "<group>"; };
 		65D2DD55283D698100832318 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
+		65D2F4972847AB73003B915E /* HeaderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				65931A3428467DFD00773E16 /* PokemonDetailView.swift */,
 				65D2DD53283D68AD00832318 /* PokemonTypeView.swift */,
 				6557301C2841710E00811416 /* RemoteImage.swift */,
+				65D2F4972847AB73003B915E /* HeaderImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				65573014284110FE00811416 /* Pokedex.swift in Sources */,
 				6557301D2841710E00811416 /* RemoteImage.swift in Sources */,
 				65D2DD54283D68AD00832318 /* PokemonTypeView.swift in Sources */,
+				65D2F4982847AB73003B915E /* HeaderImageView.swift in Sources */,
 				65D2DD52283D4B7000832318 /* String+LeadingZeroes.swift in Sources */,
 				6557301B28416AF900811416 /* ImageLoader.swift in Sources */,
 				65D2DD50283D498000832318 /* PokemonRow.swift in Sources */,
