@@ -36,7 +36,7 @@ struct PokemonTypeView: View {
                 .padding(.vertical, 8.0)
                 .padding(.horizontal, style == .regular ? 16.0 : 8.0)
                 .background(type.color)
-                .cornerRadius(.infinity)
+                .clipShape(Capsule())
             }
         }
     }
