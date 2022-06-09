@@ -21,12 +21,13 @@ struct HeaderImageView: View {
                 startPoint: .bottomLeading,
                 endPoint: .topTrailing
             )
+//            pokemon.types[0].color
+            .ignoresSafeArea(.all, edges: .all)
 
             RemoteImage(source: pokemon.spriteURL)
-                .padding(16.0)
+                .padding(.horizontal, 32.0)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 10, y: 10)
         }
-        .cornerRadius(30)
     }
 }
 

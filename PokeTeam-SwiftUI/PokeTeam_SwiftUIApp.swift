@@ -13,11 +13,9 @@ struct PokeTeam_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView {
-                NavigationView {
-                    ContentView()
-                        .environmentObject(pokedex)
-                }
+            NavigationView {
+                ContentView()
+                    .environmentObject(pokedex)
             }
         }
     }

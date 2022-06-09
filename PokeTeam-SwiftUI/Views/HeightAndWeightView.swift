@@ -37,9 +37,9 @@ struct HeightAndWeightView: View {
         .padding(.horizontal)
         .frame(height: 44)
         .background {
-            Color.white
-                .cornerRadius(.infinity)
-                .shadow(radius: 2, x: 0, y: 2)
+            Capsule()
+                .foregroundColor(Color(uiColor: .systemBackground))
+                .shadow(color: Color(uiColor: .separator), radius: 2, x: 0, y: 2)
         }
     }
 }

@@ -12,7 +12,6 @@
 		6557301B28416AF900811416 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6557301A28416AF900811416 /* ImageLoader.swift */; };
 		6557301D2841710E00811416 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6557301C2841710E00811416 /* RemoteImage.swift */; };
 		65931A3528467DFD00773E16 /* PokemonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65931A3428467DFD00773E16 /* PokemonDetailView.swift */; };
-		65931A37284694F800773E16 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65931A36284694F800773E16 /* StatusBarController.swift */; };
 		65931A392846A45800773E16 /* NavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65931A382846A45800773E16 /* NavigationConfigurator.swift */; };
 		65D2DD3C283D406500832318 /* PokeTeam_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2DD3B283D406500832318 /* PokeTeam_SwiftUIApp.swift */; };
 		65D2DD3E283D406500832318 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2DD3D283D406500832318 /* ContentView.swift */; };
@@ -38,7 +37,6 @@
 		6557301A28416AF900811416 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		6557301C2841710E00811416 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		65931A3428467DFD00773E16 /* PokemonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailView.swift; sourceTree = "<group>"; };
-		65931A36284694F800773E16 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		65931A382846A45800773E16 /* NavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationConfigurator.swift; sourceTree = "<group>"; };
 		65D2DD38283D406500832318 /* PokeTeam-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokeTeam-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D2DD3B283D406500832318 /* PokeTeam_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeTeam_SwiftUIApp.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				65D2DD3B283D406500832318 /* PokeTeam_SwiftUIApp.swift */,
-				65931A36284694F800773E16 /* StatusBarController.swift */,
 				65931A382846A45800773E16 /* NavigationConfigurator.swift */,
 				6553BA1F283E88ED0013B031 /* Views */,
 				6553BA20283E89200013B031 /* PokeAPI */,
@@ -212,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65931A3528467DFD00773E16 /* PokemonDetailView.swift in Sources */,
-				65931A37284694F800773E16 /* StatusBarController.swift in Sources */,
 				6553BA22283EAE9F0013B031 /* PokemonDTO.swift in Sources */,
 				65D2DD3E283D406500832318 /* ContentView.swift in Sources */,
 				65D2F49E2847E80E003B915E /* HeightAndWeightView.swift in Sources */,
@@ -287,13 +283,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -341,12 +339,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -16,7 +16,7 @@ enum PokeAPIError: Error {
     case varietyDataError(Error)
 }
 
-class PokeAPI {
+struct PokeAPI {
     func getPokemon(with url: URL) async throws -> (pokemon: [Pokemon], nextPageURL: String?) {
         let resourceList: SpeciesResourceList = try await get(from: url)
         let pokemonData = try await getPokemonData(for: resourceList.results ?? [])

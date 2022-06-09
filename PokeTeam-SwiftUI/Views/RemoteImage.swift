@@ -26,7 +26,7 @@ struct RemoteImage: View {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit)
             } else {
                 ProgressView()
             }

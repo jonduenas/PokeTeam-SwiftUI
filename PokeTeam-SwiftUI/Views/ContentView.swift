@@ -37,7 +37,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .listStyle(.inset)
+                .listStyle(.plain)
             }
         }
         .navigationTitle("Pokédex")

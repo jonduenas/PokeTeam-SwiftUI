@@ -22,14 +22,12 @@ struct PokemonTypeView: View {
                 HStack {
                     type.image
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
                         .frame(width: 20.0, height: 20.0)
                     if case .regular = style {
                         Text(type.name)
                             .font(.footnote)
                             .fontWeight(.bold)
                             .foregroundColor(Color.white)
-                            .multilineTextAlignment(.center)
                             .lineLimit(1)
                     }
                 }
