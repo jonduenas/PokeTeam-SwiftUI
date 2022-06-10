@@ -8,6 +8,39 @@
 import Foundation
 import SwiftUI
 
+struct Generation: Identifiable {
+    let id: Int
+    let name: String
+    let region: String
+    let species: [Pokemon]
+
+    var starters: [Pokemon] {
+        let indexSet: IndexSet = [0, 3, 6]
+        return indexSet.filteredIndexSet { $0 < species.count }
+            .map { species[$0] }
+    }
+}
+
+extension Generation {
+    init?(generationData: GenerationData, pokemonData: [(speciesData: PokemonSpeciesData, varietyData: PokemonVarietyData)]) {
+        self.id = generationData.id
+        self.name = generationData.names.first(where: { $0.language.name == "en" })?.name ?? generationData.name
+        self.region = generationData.mainRegion.name.capitalized
+        self.species = pokemonData.compactMap {
+            Pokemon(speciesData: $0.speciesData, varietyData: $0.varietyData)
+        }.sorted { $0.pokedexID < $1.pokedexID }
+    }
+}
+
+extension Generation {
+    static let example = Generation(
+        id: 1,
+        name: "Generation I",
+        region: "Kanto",
+        species: Array(repeating: Pokemon.example, count: 9)
+    )
+}
+
 struct Pokemon: Identifiable {
     var id: Int { return pokedexID }
     let pokedexID: Int

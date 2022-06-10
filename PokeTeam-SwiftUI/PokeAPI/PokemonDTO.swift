@@ -23,6 +23,14 @@ struct SpeciesResourceList: Codable {
     let results: [NameAndURL]?
 }
 
+struct GenerationData: Decodable {
+    let id: Int
+    let name: String
+    let names: [NameEntry]
+    let mainRegion: NameAndURL
+    let pokemonSpecies: [NameAndURL]
+}
+
 struct NameAndURL: Codable {
     let name: String
     let url: String
