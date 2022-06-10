@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PokemonRow: View {
     let pokemon: Pokemon
@@ -16,7 +17,14 @@ struct PokemonRow: View {
 
     var body: some View {
         HStack(spacing: 20) {
-            RemoteImage(source: pokemon.spriteURL)
+            KFImage(pokemon.spriteURL)
+                .downsampling(size: CGSize(width: 60, height: 60))
+                .cacheOriginalImage()
+                .placeholder { _ in
+                    ProgressView()
+                }
+                .cancelOnDisappear(true)
+                .resizable()
                 .padding(8.0)
                 .frame(width: 60.0, height: 60.0)
 
