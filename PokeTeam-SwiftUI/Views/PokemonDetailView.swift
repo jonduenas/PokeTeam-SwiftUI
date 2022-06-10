@@ -19,11 +19,7 @@ struct PokemonDetailView: View {
                     GeometryReader { scrollProxy in
                         ZStack {
                             LinearGradient(
-                                gradient: Gradient(
-                                    colors: [
-                                        pokemon.types[0].color,
-                                        pokemon.types[0].secondaryGradientColor
-                                    ]),
+                                gradient: pokemon.gradient,
                                 startPoint: .bottomLeading,
                                 endPoint: .topTrailing
                             )

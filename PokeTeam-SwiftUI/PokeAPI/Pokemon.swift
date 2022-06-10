@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Pokemon: Identifiable {
     var id: Int { return pokedexID }
@@ -21,6 +22,13 @@ struct Pokemon: Identifiable {
     let spriteURL: URL
     let stats: [Stat: Int]
     let types: [PokemonType]
+
+    var gradient: Gradient {
+        let color1 = types[0].color.adjust(brightness: 0.3)
+        let color2 = (types.count > 1 ? types[1].color : types[0].secondaryGradientColor).adjust(brightness: 0.3)
+
+        return Gradient(colors: [color1, color2])
+    }
 }
 
 extension Pokemon {
